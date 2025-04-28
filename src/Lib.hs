@@ -19,4 +19,4 @@ pamela :: Personaje
 pamela = UnPersonaje "Pamela" "lluvia de tuercas" "torreta curativa" False 9600 
 
 bolaEspinosa :: Personaje -> Personaje
-bolaEspinosa unPersonaje = UnPersonaje {cantidadDeVida = restarMilDeVida(unPersonaje)}
+bolaEspinosa unPersonaje = unPersonaje {cantidadDeVida = restarMilDeVida(unPersonaje)}
