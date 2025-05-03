@@ -34,5 +34,15 @@ lluviaDeTuercas efectoDeTuercas atacante enemigo
 
 -----------------------------------------------------------------------------------------
 
+nuevoNombre :: Personaje -> String
+nuevoNombre unPersonaje = nombre unPersonaje ++ "Espina estuvo aqui"
+
+granadaDeEspinas :: Int -> Personaje -> Personaje
+granadaDeEspinas radioDeExplosion enemigo
+  | radioDeExplosion > 3 && cantidadDeVida enemigo < 800 = enemigo {nombre = nuevoNombre enemigo, tieneSuperPoderActivo = False, cantidadDeVida = 0}
+  | radioDeExplosion > 3 = enemigo {nombre = nuevoNombre enemigo}
+  | otherwise = bolaEspinosa(enemigo)  
+
+-----------------------------------------------------------------------------------------
 
 
