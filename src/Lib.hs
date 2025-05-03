@@ -12,6 +12,9 @@ espina = UnPersonaje "Espina" "Bola de espinas" "Granada de espinas" True 4800
 pamela :: Personaje
 pamela = UnPersonaje "Pamela" "Lluvia de tuercas" "Torreta curativa" False 9600
 
+personajes :: [Personaje]
+personajes = [espina, pamela]
+
 milDeDanio :: Personaje -> Int
 milDeDanio unPersonaje = cantidadDeVida unPersonaje - 1000
 
@@ -58,3 +61,9 @@ atacarConElPoderEspecial atacante enemigo
   | tieneSuperPoderActivo atacante == True && nombre atacante == "Espina" = (bolaEspinosa . granadaDeEspinas 4) enemigo
   | tieneSuperPoderActivo atacante == True && nombre atacante == "Pamela" = (lluviaDeTuercas "dañinas" enemigo . torretaCurativa) atacante
   | otherwise = enemigo
+
+estanEnLasUltimas :: [Personaje] -> [String]
+estanEnLasUltimas unosPersonajes = (map nombre . filter tienePocaVida) unosPersonajes
+
+tienePocaVida :: Personaje -> Bool
+tienePocaVida personaje = cantidadDeVida personaje < 800
