@@ -45,4 +45,10 @@ granadaDeEspinas radioDeExplosion enemigo
 
 -----------------------------------------------------------------------------------------
 
+curarDobleDeVida :: Personaje -> Int
+curarDobleDeVida unPersonaje = cantidadDeVida unPersonaje * 2
 
+torretaCurativa :: Personaje -> Personaje
+torretaCurativa aliado = aliado {cantidadDeVida = curarDobleDeVida(aliado), tieneSuperPoderActivo = True}
+
+-----------------------------------------------------------------------------------------
