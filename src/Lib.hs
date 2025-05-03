@@ -7,10 +7,10 @@ data Personaje = UnPersonaje {
 } deriving (Show)
 
 espina :: Personaje 
-espina = UnPersonaje "Espina" "bola de espinas" "granada de espinas" True 4800 
+espina = UnPersonaje "Espina" "Bola de espinas" "Granada de espinas" True 4800 
 
 pamela :: Personaje
-pamela = UnPersonaje "Pamela" "lluvia de tuercas" "torreta curativa" False 9600
+pamela = UnPersonaje "Pamela" "Lluvia de tuercas" "Torreta curativa" False 9600
 
 milDeDanio :: Personaje -> Int
 milDeDanio unPersonaje = cantidadDeVida unPersonaje - 1000
@@ -27,7 +27,7 @@ mitadDeVida :: Personaje -> Int
 mitadDeVida unPersonaje = (cantidadDeVida unPersonaje) `div` 2
 
 lluviaDeTuercas :: String -> Personaje -> Personaje -> Personaje
-lluviaDeTuercas efectoDeTuercas atacante enemigo 
+lluviaDeTuercas efectoDeTuercas enemigo atacante
   | efectoDeTuercas == "sanadoras" = atacante {cantidadDeVida = curar800DeVida atacante} 
   | efectoDeTuercas == "dañinas" = enemigo {cantidadDeVida = mitadDeVida enemigo}
   | otherwise = enemigo
@@ -52,3 +52,9 @@ torretaCurativa :: Personaje -> Personaje
 torretaCurativa aliado = aliado {cantidadDeVida = curarDobleDeVida(aliado), tieneSuperPoderActivo = True}
 
 -----------------------------------------------------------------------------------------
+
+atacarConElPoderEspecial :: Personaje -> Personaje -> Personaje
+atacarConElPoderEspecial atacante enemigo 
+  | tieneSuperPoderActivo atacante == True && nombre atacante == "Espina" = (bolaEspinosa . granadaDeEspinas 4) enemigo
+  | tieneSuperPoderActivo atacante == True && nombre atacante == "Pamela" = (lluviaDeTuercas "dañinas" enemigo . torretaCurativa) atacante
+  | otherwise = enemigo
